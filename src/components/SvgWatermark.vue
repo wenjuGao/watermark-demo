@@ -1,5 +1,6 @@
 <template>
-  <div class="card svg-mark">
+  <div class="card svg-mark"
+       ref="svgRef">
     <div class="card-body">
       <h5 class="card-title">Svg做水印</h5>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -8,7 +9,8 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+const svgRef = ref()
 const createWaterMark = () => {
   const svgStr =
     `<svg xmlns="http://www.w3.org/2000/svg" width="180px" height="100px">
@@ -27,7 +29,7 @@ const createWaterMark = () => {
   return `data:image/svg+xml;base64,${window.btoa(unescape(encodeURIComponent(svgStr)))}`;
 }
 onMounted(() => {
-  document.querySelector('.svg-mark').style.backgroundImage = `url(${createWaterMark()})`
+  svgRef.value.style.backgroundImage = `url(${createWaterMark()})`
 });
 </script>
 

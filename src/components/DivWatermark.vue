@@ -1,5 +1,6 @@
 <template>
-  <div class="card div-watermark">
+  <div class="card"
+       ref="divRef">
     <div class="card-body">
       <h5 class="card-title">div作为水印节点</h5>
       <p class="card-text">根据容器大小动态生产dom节点来作为使用内容，借助css的userSelect来阻止用户选中文本。（不建议使用此方案）</p>
@@ -8,8 +9,8 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-
+import { onMounted, ref } from 'vue';
+const divRef = ref()
 const addDivWaterMark = (el, text) => {
   const { clientWidth, clientHeight } = el;
   const waterWrapper = document.createElement('div');
@@ -25,14 +26,14 @@ const addDivWaterMark = (el, text) => {
   el.append(waterWrapper)
 }
 onMounted(() => {
-  addDivWaterMark(document.querySelector('.div-watermark'), "前端小书童")
+  addDivWaterMark(divRef.value, "前端小书童")
 });
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
-.div-watermark.card {
+.card {
   position: relative;
   overflow: hidden;
   background-color: transparent;

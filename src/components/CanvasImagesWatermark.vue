@@ -1,5 +1,6 @@
 <template>
-  <div class="card canvas-images-watermark-wrapper">
+  <div class="card"
+       ref="canvasRef">
     <div class="card-body">
       <h5 class="card-title">Canvas写入图片做背景水印</h5>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -8,8 +9,9 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import ImageBg from "../assets/bg.png"
+const canvasRef = ref()
 const createWaterMark = ({
   width = 120,
   height = 120,
@@ -30,9 +32,9 @@ onMounted(() => {
     ctx.rotate(Math.PI / 180 * 20);
     // 获取指定区域的canvas像素信息
     ctx.drawImage(img, 0, 16, 180, 100);
-    document.querySelector(".canvas-images-watermark-wrapper").style.backgroundImage = `url(${canvas.toDataURL()})`
+    canvasRef.value.style.backgroundImage = `url(${canvas.toDataURL()})`
   };
-  img.src = ImageBg
+  img.src = ImageBg;
 });
 
 </script>

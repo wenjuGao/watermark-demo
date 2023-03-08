@@ -1,5 +1,6 @@
 <template>
-  <div class="card canvas-text">
+  <div class="card"
+       ref="canvasRef">
     <div class="card-body">
       <h5 class="card-title">Canvas写入文字做背景水印</h5>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -9,7 +10,8 @@
 
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+const canvasRef = ref()
 const createWaterMark = ({
   rotate = -20,
   text = '',
@@ -32,7 +34,7 @@ const createWaterMark = ({
   return canvas.toDataURL();
 }
 onMounted(() => {
-  document.querySelector(".canvas-text").style.backgroundImage = `url(${createWaterMark({ text: "前端小书童" })})`
+  canvasRef.value.style.backgroundImage = `url(${createWaterMark({ text: "前端小书童" })})`
 });
 
 </script>
