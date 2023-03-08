@@ -1,0 +1,15 @@
+<template>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">盲水印</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    </div>
+  </div>
+</template>
+
+<script>
+
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped></style>
