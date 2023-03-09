@@ -53,19 +53,18 @@ export const encode = (ctx, textData, color, originalData) => {
 			break;
 	}
 	for (let i = 0; i < originalData.data.length; i++) {
+		// 只处理目标色值
 		if (i % 4 == color) {
-			// 只处理目标通道
-			// 原图透明度为0 绘制水印后R值为奇数
+			// 水印画布透明度为0
 			if (textData[i + offset] === 0 && (originalData.data[i] % 2 === 1)) {
-				// 没有信息的像素，该通道最低位置0，但不要越界
+				// 放置越界
 				if (originalData.data[i] === 255) {
 					originalData.data[i]--;
 				} else {
 					originalData.data[i]++;
 				}
-				// 原图透明度不为0 绘制水印后R值为偶数
+				// 水印画布透明度不为0
 			} else if (textData[i + offset] !== 0 && (originalData.data[i] % 2 === 0)) {
-				// // 有信息的像素，该通道最低位置1，可以想想上面的斑点效果是怎么实现的
 				originalData.data[i]++;
 			}
 		}
