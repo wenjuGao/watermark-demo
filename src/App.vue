@@ -23,10 +23,10 @@
         <BlindWatermark />
       </div>
       <div class="col-6">
-        <BlindImageWatermark />
+        <ImageBlindWatermark />
       </div>
       <div class="col-6">
-        <ImageBlindWatermark />
+        <ToolImageWatermark />
       </div>
     </div>
   </div>
@@ -34,7 +34,7 @@
 
 <script setup>
 import ImagesWatermark from './components/ImagesWatermark.vue'
-import BlindImageWatermark from './components/BlindImageWatermark.vue'
+import ToolImageWatermark from './components/ToolImageWatermark.vue'
 import BlindWatermark from './components/BlindWatermark.vue'
 import CanvasImagesWatermark from './components/CanvasImagesWatermark.vue'
 import CanvasTextWatermark from './components/CanvasTextWatermark.vue'

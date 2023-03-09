@@ -11,30 +11,17 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
+import { defaultConfig } from "../constant/index"
+import { createWaterMark } from "../utils/index"
 const canvasRef = ref()
-const createWaterMark = ({
-  rotate = -20,
-  text = '',
-  width = 100,
-  height = 100,
-  fillStyle = '#000',
-  opacity = 0.2,
-  font = `16px serif`
-}) => {
-  const canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = fillStyle;
-  ctx.globalAlpha = opacity;
-  ctx.font = font
-  ctx.rotate(Math.PI / 180 * rotate);
-  ctx.fillText(text, 0, 50);
-  return canvas.toDataURL();
-}
+
 onMounted(() => {
-  canvasRef.value.style.backgroundImage = `url(${createWaterMark({ text: "前端小书童" })})`
+  const Image = createWaterMark({
+    ...defaultConfig,
+    opacity: 0.2,
+    text: "前端小书童"
+  }).toDataURL()
+  canvasRef.value.style.backgroundImage = `url(${Image})`
 });
 
 </script>

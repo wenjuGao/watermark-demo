@@ -10,12 +10,14 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import ImageBg from "../assets/bg.png"
+import ImageBg from "../assets/watermark.png"
 const canvasRef = ref()
-const createWaterMark = ({
-  width = 120,
-  height = 120,
-}) => {
+const config = {
+  width: 100,
+  height: 100,
+}
+// 创建画布
+const createWaterMark = ({ width, height }) => {
   const canvas = document.createElement('canvas');
   canvas.width = width;
   canvas.height = height;
@@ -26,11 +28,10 @@ const createWaterMark = ({
 }
 onMounted(() => {
   const img = new Image();
-  const { ctx, canvas } = createWaterMark({});
+  const { ctx, canvas } = createWaterMark(config);
   img.onload = function () {
     ctx.globalAlpha = 0.2;
     ctx.rotate(Math.PI / 180 * 20);
-    // 获取指定区域的canvas像素信息
     ctx.drawImage(img, 0, 16, 180, 100);
     canvasRef.value.style.backgroundImage = `url(${canvas.toDataURL()})`
   };

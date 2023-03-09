@@ -17,6 +17,7 @@ const addDivWaterMark = (el, text) => {
   waterWrapper.className = "waterWrapper";
   const column = Math.ceil(clientWidth / 100);
   const rows = Math.ceil(clientHeight / 100);
+  // 根据容器宽高动态生成div
   for (let i = 0; i < column * rows; i++) {
     const wrap = document.createElement('div');
     wrap.className = "water";

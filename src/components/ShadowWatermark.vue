@@ -3,7 +3,8 @@
        ref="shadowRef">
     <div class="card-body">
       <h5 class="card-title">shadowDom水印</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text">使用customElements自定义个一个标签（可以使用其他任意标签，不过注意shadow DOM会使起同级的元素不显示。）
+        可以像shadow DOM写入style样式和水印节点（可以使用背景或者div形式）.</p>
     </div>
   </div>
 </template>
@@ -11,6 +12,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 const shadowRef = ref()
+
 class ShadowMark extends HTMLElement {
   constructor() {
     super();
@@ -39,7 +41,8 @@ class ShadowMark extends HTMLElement {
 			}`;
     const waterHeight = 100
     const waterWidth = 100
-    const { clientWidth, clientHeight } = document.querySelector('.shadow-watermark')
+    // 此部分使用的div的形式，使用背景图和canvas都可以
+    const [clientWidth, clientHeight] = arguments
     const column = Math.ceil(clientWidth / waterWidth)
     const rows = Math.ceil(clientHeight / waterHeight)
     wrapContainer.setAttribute('class', "wrapContainer")
@@ -55,9 +58,10 @@ class ShadowMark extends HTMLElement {
     shadowRoot.appendChild(wrapContainer)
   }
 }
+customElements.define('shadow-mark', ShadowMark);
 onMounted(() => {
-  customElements.define('shadow-mark', ShadowMark);
-  shadowRef.value.appendChild(new ShadowMark())
+  const shadowDom = new ShadowMark(shadowRef.value.clientWidth, shadowRef.value.clientHeight)
+  shadowRef.value.appendChild(shadowDom)
 });
 
 </script>

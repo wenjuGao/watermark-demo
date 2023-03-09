@@ -3,7 +3,7 @@
        ref="svgRef">
     <div class="card-body">
       <h5 class="card-title">Svg做水印</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text">通过svg样式来控制水印样式，再将svg转换成base64的背景图</p>
     </div>
   </div>
 </template>
@@ -11,6 +11,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 const svgRef = ref()
+// 将svg转换成base64的背景图
 const createWaterMark = () => {
   const svgStr =
     `<svg xmlns="http://www.w3.org/2000/svg" width="180px" height="100px">

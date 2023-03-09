@@ -26,7 +26,7 @@
     top: -20%;
     left: -20%;
     z-index: -1;
-    background-image: url("../assets/bg.png");
+    background-image: url("../assets/watermark.png");
     background-position: 0 0;
     background-origin: content-box;
     background-attachment: scroll;
